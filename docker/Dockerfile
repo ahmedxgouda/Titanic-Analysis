@@ -1,4 +1,4 @@
-FROM python:3.13-alpine AS builder
+FROM python:3.11-alpine AS builder
 
 SHELL ["/bin/sh", "-o", "pipefail", "-c"]
 
@@ -42,7 +42,7 @@ COPY model_weights.npy .
 COPY model_weights_meta.json .
 COPY utils.py .
 
-FROM python:3.13-alpine
+FROM python:3.11-alpine
 
 SHELL ["/bin/sh", "-o", "pipefail", "-c"]
 
