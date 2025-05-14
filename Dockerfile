@@ -33,14 +33,14 @@ RUN --mount=type=cache,target=${PIP_CACHE_DIR} \
 WORKDIR /home/app
 USER app
 
+COPY --chmod=444 ./pyproject.toml ./poetry.lock ./
+RUN --mount=type=cache,target=${POETRY_CACHE_DIR},uid=${UID},gid=${GID} \
+    poetry install --no-root
+
 COPY app.py .
 COPY model_weights.npy .
 COPY model_weights_meta.json .
 COPY utils.py .
-
-COPY --chmod=444 ./pyproject.toml ./poetry.lock ./
-RUN --mount=type=cache,target=${POETRY_CACHE_DIR},uid=${UID},gid=${GID} \
-    poetry install --no-root
 
 FROM python:3.13-alpine
 
