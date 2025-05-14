@@ -1,1 +1,1 @@
-# ML
+# Run it with: `docker compose -f ./docker-compose.yaml up --build`
